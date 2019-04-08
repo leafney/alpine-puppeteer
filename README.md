@@ -26,6 +26,8 @@ If you set the log directory to `/logs` in the PM2 configuration file, you can d
 $ docker run --name nodeapp -d -p 8000:8000 -v /home/tiger/node_app:/app -v /home/tiger/node_logs:/logs leafney/alpine-nodejs:latest
 ```
 
+***
+
 #### Node App Demo
 
 ##### simplest Express application
@@ -125,4 +127,16 @@ $ docker restart nodeapp
 nodeapp
 ```
 
+*****
+
+#### show app status
+
+use `mp2 list` or `mp2 list` to get app status:
+
+```
+docker exec -it nodeapp pm2 list
+# or:
+docker exec -it nodeapp pm2 monit
+# (use `q` exit)
+```
 *****
