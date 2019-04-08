@@ -1,15 +1,15 @@
-### alpine-nodejs
+### alpine-puppeteer
 
 #### Get Image from Docker Hub
 
 ```
-$ docker pull leafney/alpine-nodejs
+$ docker pull leafney/alpine-puppeteer
 ```
 
 #### Run default container
 
 ```
-$ docker run --name nodeapp -d -p 8000:8000 leafney/alpine-nodejs:latest
+$ docker run --name puppet -d -p 8000:8000 leafney/alpine-puppeteer:latest
 ```
 
 #### Run a container for your nodejs app
@@ -17,13 +17,13 @@ $ docker run --name nodeapp -d -p 8000:8000 leafney/alpine-nodejs:latest
 The main directory of the project in the container is `/app`.
 
 ```
-$ docker run --name nodeapp -d -p 8000:8000 -v /home/tiger/node_app:/app leafney/alpine-nodejs:latest
+$ docker run --name puppet -d -p 8000:8000 -v /home/tiger/node_app:/app leafney/alpine-puppeteer:latest
 ```
 
 If you set the log directory to `/logs` in the PM2 configuration file, you can do this:
 
 ```
-$ docker run --name nodeapp -d -p 8000:8000 -v /home/tiger/node_app:/app -v /home/tiger/node_logs:/logs leafney/alpine-nodejs:latest
+$ docker run --name puppet -d -p 8000:8000 -v /home/tiger/node_app:/app -v /home/tiger/node_logs:/logs leafney/alpine-puppeteer:latest
 ```
 
 ***
@@ -116,15 +116,15 @@ Enjoy it!
 
 #### Change container timezone UTC to CST
 
-If the container name is `nodeapp`,use command `docker exec nodeapp utc2cst.sh` to change:
+If the container name is `puppet`,use command `docker exec puppet utc2cst.sh` to change:
 
 ```
-$ docker exec nodeapp utc2cst.sh
+$ docker exec puppet utc2cst.sh
 [i] change timezone success
 Mon Apr  8 01:52:13 CST 2019
 
-$ docker restart nodeapp
-nodeapp
+$ docker restart puppet
+puppet
 ```
 
 *****
@@ -134,9 +134,9 @@ nodeapp
 use `mp2 list` or `mp2 list` to get app status:
 
 ```
-docker exec -it nodeapp pm2 list
+docker exec -it puppet pm2 list
 # or:
-docker exec -it nodeapp pm2 monit
+docker exec -it puppet pm2 monit
 # (use `q` exit)
 ```
 *****
