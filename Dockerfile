@@ -1,7 +1,7 @@
 FROM node:11-alpine
 LABEL maintainer="leafney <babycoolzx@126.com>"
 
-RUN echo "https://mirrors.aliyun.com/alpine/edge/testing/" >> /etc/apk/repositories && \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk add -U --no-cache --allow-untrusted tzdata chromium ttf-freefont wqy-zenhei ca-certificates && \
     mkdir -p /app /logs && \
     yarn global add pm2 && \
