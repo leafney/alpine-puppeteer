@@ -1,0 +1,26 @@
+FROM node:11-alpine
+LABEL maintainer="leafney <babycoolzx@126.com>"
+
+# 在国内由于网络原因，软件下载比较慢，所以加入了国内的软件源以加速构建
+# 设置国内阿里云镜像站，安装chromium、文泉驿免费中文字体等依赖库，配置npm和yarn的taobao仓库
+
+RUN echo "https://mirrors.aliyun.com/alpine/v3.9/main/" > /etc/apk/repositories && \
+    echo "https://mirrors.aliyun.com/alpine/v3.9/community/" >> /etc/apk/repositories && \
+    echo "https://mirrors.aliyun.com/alpine/edge/testing/" >> /etc/apk/repositories && \
+    apk add -U --no-cache --allow-untrusted tzdata chromium ttf-freefont wqy-zenhei ca-certificates && \
+    mkdir -p /app /logs && \
+    npm config set registry 'https://registry.npm.taobao.org' && \
+    yarn config set registry 'https://registry.npm.taobao.org' && \
+    yarn global add pm2 && \
+    yarn cache clean && \
+    rm -rf /var/cache/apk/*
+
+COPY ./startup.sh ./utc2cst.sh /usr/local/bin/
+RUN chmod +x usr/local/bin/startup.sh && \
+    chmod +x usr/local/bin/utc2cst.sh
+
+WORKDIR /app
+VOLUME ["/app"]
+
+EXPOSE 8000
+CMD [ "startup.sh" ]
