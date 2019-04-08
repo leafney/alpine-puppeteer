@@ -6,12 +6,6 @@
 $ docker pull leafney/alpine-puppeteer
 ```
 
-#### Run default container
-
-```
-$ docker run --name puppet -d -p 8000:8000 leafney/alpine-puppeteer:latest
-```
-
 #### Run a container for your nodejs app
 
 The main directory of the project in the container is `/app`.
@@ -108,7 +102,7 @@ module.exports = {
 
 ##### Run
 
-Copy all files in the `node_app` directory to the volume directory and restart the container.
+Copy all files in the `node_app` directory to the volume directory like `/home/tiger/node_app` and restart the container.
 
 Enjoy it!
 
