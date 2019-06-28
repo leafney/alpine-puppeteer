@@ -125,7 +125,7 @@ puppet
 
 #### show app status
 
-use `mp2 list` or `mp2 list` to get app status:
+use `mp2 list` or `mp2 monit` to get app status:
 
 ```
 docker exec -it puppet pm2 list
